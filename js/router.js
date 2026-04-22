@@ -139,7 +139,7 @@
     fade.innerHTML = fadeSvg.trim();
     foot.appendChild(fade.firstChild);
     foot.appendChild(el('div', { class: 'foot__block' },
-      el('span', {}, '© 2024 Avery Kim'),
+      el('span', {}, '© 2026 Avery Kim'),
       el('span', {}, 'All rights reserved')
     ));
     return foot;
