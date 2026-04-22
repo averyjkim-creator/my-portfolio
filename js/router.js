@@ -766,7 +766,7 @@
       loop: '',
       muted: '',
       playsinline: '',
-      preload: 'metadata',
+      preload: 'auto',
       poster: poster || null,
       'aria-label': alt || ''
     });
@@ -785,7 +785,7 @@
       loop: '',
       muted: '',
       playsinline: '',
-      preload: 'metadata',
+      preload: 'auto',
       poster: poster || null,
       style: 'width:100%;height:auto;display:block;object-fit:contain;'
     });
@@ -872,16 +872,20 @@
   }
 
   /* ---------- Reveals on scroll ---------- */
+  function playVideosIn(el) {
+    el.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
+  }
   function initReveals(root) {
     const targets = root.querySelectorAll('.reveal, .fig');
     if (!('IntersectionObserver' in window)) {
-      targets.forEach(t => t.classList.add('in'));
+      targets.forEach(t => { t.classList.add('in'); playVideosIn(t); });
       return;
     }
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('in');
+          playVideosIn(e.target);
           io.unobserve(e.target);
         }
       });
