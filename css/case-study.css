@@ -1,0 +1,251 @@
+/* ---------- Case study — shared template ---------- */
+.cs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 0 80px;
+  margin: 0 0 -42px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Solid plate that always covers the viewport below the fixed hero.
+   Absolute within .cs so it scrolls with the content (background moves with
+   the reel). The footer gets its own opaque backing on case study pages so
+   the fixed hero can't peek through the footer's translucent fade stripes. */
+.cs::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 640px;
+  bottom: 0;
+  background: #181818;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* On case study pages, back the footer with the same plate color so the
+   footer's translucent fade stripes never reveal the fixed hero underneath. */
+body[data-theme="case-study"] .foot { background: #181818; }
+
+/* Hero image slot — fixed to viewport at lowest z-index so content scrolls over it */
+.cs__hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 640px;
+  background: var(--cs-hero-bg, linear-gradient(135deg, #3a1727, #2E101D));
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+.cs__hero img { width: 100%; height: 100%; object-fit: cover; }
+
+/* OpenDesk logo overlay — centered within the 640px hero area */
+.cs__hero-logo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.cs__hero-logo svg {
+  width: 720px;
+  max-width: 90%;
+  height: auto;
+  display: block;
+}
+
+/* Spacer that occupies the hero's slot in flow so content starts below it */
+.cs__hero-spacer {
+  width: 100%;
+  height: 640px;
+  flex-shrink: 0;
+}
+
+/* Everything after the hero sits above the solid plate */
+.cs__intro,
+.cs__reel,
+.cs__nav,
+.cs .rule-stack {
+  position: relative;
+  z-index: 2;
+}
+
+/* Ensure the content plate always covers the hero area so it never peeks at the bottom */
+.cs__reel {
+  min-height: calc(100vh - 40px);
+}
+
+/* Opening title card */
+.cs__intro {
+  color: #FFE9D2;
+  padding: 40px var(--pad-x);
+  position: relative;
+  overflow: hidden;
+}
+.cs__title {
+  /* H1 */
+  font-family: "Michroma", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: -0.96px;
+  color: #FFE9D2;
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+.cs__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.cs__meta {
+  /* Body */
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.64px;
+  color: #FFE9D2;
+}
+.cs__meta dt {
+  color: rgba(255, 233, 210, 0.5);
+  margin-top: 10px;
+}
+.cs__meta dt:first-child { margin-top: 0; }
+.cs__meta dd { color: #FFE9D2; }
+.cs__body {
+  /* Body */
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.64px;
+  color: #FFE9D2;
+}
+.cs__body p + p { margin-top: 1em; }
+
+@media (max-width: 700px) {
+  .cs__columns { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* Media reel — stacked figures */
+.cs__reel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.4vw, 20px);
+  padding: clamp(20px, 2.5vw, 36px) var(--pad-x) 0;
+}
+.fig {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--fg-hairline);
+}
+.fig--wide { aspect-ratio: 16 / 9; }
+.fig--square { aspect-ratio: 1; }
+.fig--tall { aspect-ratio: 3 / 4; }
+.fig--tight { aspect-ratio: 21 / 9; }
+
+.fig img, .fig video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* 2-up / 3-up / 4-up rows */
+.fig-row {
+  display: grid;
+  gap: clamp(12px, 1.4vw, 20px);
+}
+.fig-row--2 { grid-template-columns: 1fr 1fr; }
+.fig-row--3 { grid-template-columns: 1fr 1fr 1fr; }
+.fig-row--4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 700px) {
+  .fig-row--3, .fig-row--4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .fig-row--2, .fig-row--3, .fig-row--4 { grid-template-columns: 1fr; }
+}
+
+/* Placeholder style (for any figure without an image) */
+.fig--placeholder {
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(200,255,174,0.04) 0 12px,
+      rgba(200,255,174,0.08) 12px 13px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-dim);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Reveal on scroll */
+.fig { opacity: 0; transform: translateY(24px); transition: opacity 720ms var(--ease), transform 720ms var(--ease); }
+.fig.in { opacity: 1; transform: translateY(0); }
+
+/* Prev / Next project nav — two separate pill containers */
+.cs__nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  background: transparent;
+  margin: clamp(40px, 6vw, 80px) var(--pad-x) 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.cs__nav a {
+  padding: 32px 22px;
+  /* H3 */
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -0.64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #FFE9D2;
+  border: 1px solid #FFE9D2;
+  border-radius: 24px;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.cs__nav a:hover { background: transparent; color: #C8FFAE; border-color: #C8FFAE; }
+.cs__nav a .cs__nav-arrow { transition: transform var(--dur) var(--ease); }
+.cs__nav a .cs__nav-arrow path { transition: fill var(--dur) var(--ease); }
+.cs__nav a:hover .cs__nav-arrow path { fill: #C8FFAE; }
+.cs__nav a.prev:hover .cs__nav-arrow { transform: translateX(-4px); }
+.cs__nav a.next:hover .cs__nav-arrow { transform: translateX(4px); }
+.cs__nav a.prev { padding: 32px 22px; }
+.cs__nav a.next { padding: 32px 22px; justify-content: center; }
+
+/* ---------- Per-project theme overrides ----------
+   Scoped via body[data-theme="xxx"] so the shell (nav, footer) inherits too */
+
+body[data-theme="opendesk"]       { --bg: #0F1B3B; --bg-deep: #0A132B; --fg: #E8E9F3; --fg-dim: rgba(232,233,243,0.62); --fg-faint: rgba(232,233,243,0.22); --fg-hairline: rgba(232,233,243,0.14); --ink: #0F1B3B; }
+body[data-theme="aetherflux"]     { --bg: #000000; --bg-deep: #000000; --fg: #F0E9DD; --fg-dim: rgba(240,233,221,0.62); --fg-faint: rgba(240,233,221,0.22); --fg-hairline: rgba(240,233,221,0.14); --ink: #0A0A0C; }
+body[data-theme="openstore-shop"] { --bg: #0B3A2E; --bg-deep: #062920; --fg: #E8F5EE; --fg-dim: rgba(232,245,238,0.62); --fg-faint: rgba(232,245,238,0.22); --fg-hairline: rgba(232,245,238,0.14); --ink: #0B3A2E; }
+body[data-theme="gumdrop"]        { --bg: #EAE4D9; --bg-deep: #D9D2C4; --fg: #2A211A; --fg-dim: rgba(42,33,26,0.62); --fg-faint: rgba(42,33,26,0.22); --fg-hairline: rgba(42,33,26,0.14); --ink: #EAE4D9; }
+body[data-theme="openstore"]      { --bg: #F3F0EB; --bg-deep: #E3DED6; --fg: #1A1612; --fg-dim: rgba(26,22,18,0.62); --fg-faint: rgba(26,22,18,0.22); --fg-hairline: rgba(26,22,18,0.14); --ink: #F3F0EB; }
+body[data-theme="affirm-photo"]   { --bg: #0B1D4E; --bg-deep: #081540; --fg: #F4E7D3; --fg-dim: rgba(244,231,211,0.62); --fg-faint: rgba(244,231,211,0.22); --fg-hairline: rgba(244,231,211,0.14); --ink: #0B1D4E; }
+body[data-theme="affirm-marketing"] { --bg: #E7DCC3; --bg-deep: #D6CBB0; --fg: #0B1D4E; --fg-dim: rgba(11,29,78,0.62); --fg-faint: rgba(11,29,78,0.22); --fg-hairline: rgba(11,29,78,0.14); --ink: #E7DCC3; }
+body[data-theme="affirm-rebrand"] { --bg: #0B1D4E; --bg-deep: #081540; --fg: #F4E7D3; --fg-dim: rgba(244,231,211,0.62); --fg-faint: rgba(244,231,211,0.22); --fg-hairline: rgba(244,231,211,0.14); --ink: #0B1D4E; }
+body[data-theme="ch"]             { --bg: #031C4A; --bg-deep: #01133A; --fg: #E9EEF8; --fg-dim: rgba(233,238,248,0.62); --fg-faint: rgba(233,238,248,0.22); --fg-hairline: rgba(233,238,248,0.14); --ink: #031C4A; }
+body[data-theme="ch-oe"]          { --bg: #031C4A; --bg-deep: #01133A; --fg: #E9EEF8; --fg-dim: rgba(233,238,248,0.62); --fg-faint: rgba(233,238,248,0.22); --fg-hairline: rgba(233,238,248,0.14); --ink: #031C4A; }
+body[data-theme="ch-id"]          { --bg: #021689; --bg-deep: #01106D; --fg: #E9EEF8; --fg-dim: rgba(233,238,248,0.62); --fg-faint: rgba(233,238,248,0.22); --fg-hairline: rgba(233,238,248,0.14); --ink: #021689; }
+
+/* Per-theme component overrides */
+body[data-theme="aetherflux"] .cs::after { background: #000000; }
+body[data-theme="aetherflux"] .foot__block { background: #181818; }

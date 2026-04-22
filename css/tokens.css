@@ -1,0 +1,136 @@
+/* Design tokens — extracted from Figma */
+:root {
+  /* Color */
+  --bg: #2E101D;
+  --bg-deep: #1D030E;
+  --fg: #C8FFAE;
+  --fg-dim: rgba(200, 255, 174, 0.62);
+  --fg-faint: rgba(200, 255, 174, 0.22);
+  --fg-hairline: rgba(200, 255, 174, 0.14);
+  --fg-solid: #C8FFAE;
+  --ink: #2E101D; /* text-on-green */
+
+  /* Type */
+  --font-sans: "Michroma", "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Scale — mobile-first, fluid */
+  --fs-micro: 11px;
+  --fs-meta: clamp(11px, 0.72vw + 8px, 13px);
+  --fs-body: clamp(14px, 0.5vw + 12px, 16px);
+  --fs-label: clamp(13px, 0.3vw + 12px, 15px);
+  --fs-h3: clamp(20px, 1.2vw + 16px, 28px);
+  --fs-h2: clamp(28px, 2.4vw + 16px, 48px);
+  --fs-h1: clamp(36px, 8vw, 120px); /* wordmark row — Michroma is much wider than Inter */
+
+  /* Spacing */
+  --pad-x: clamp(16px, 3vw, 40px);
+  --gap-xs: 8px;
+  --gap-sm: 12px;
+  --gap-md: 20px;
+  --gap-lg: 32px;
+  --gap-xl: 56px;
+  --gap-2xl: 96px;
+
+  /* Radius */
+  --r-card: 12px;
+  --r-pill: 999px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 180ms;
+  --dur: 360ms;
+  --dur-slow: 640ms;
+  --dur-page: 500ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+    --dur-page: 0ms;
+  }
+}
+
+/* Work page: peach palette for body content only (nav + footer stay green) */
+body[data-theme="work"] .route {
+  --fg: #FFE9D2;
+  --fg-dim: rgba(255, 233, 210, 0.62);
+  --fg-faint: rgba(255, 233, 210, 0.22);
+  --fg-hairline: rgba(255, 233, 210, 0.14);
+  --fg-solid: #FFE9D2;
+  --ink: #2E101D;
+  color: var(--fg);
+}
+/* Avery Kim wordmark keeps mint */
+body[data-theme="work"] .wordmark svg path { fill: #C8FFAE; }
+
+/* About page: mint background site-wide */
+html:has(body[data-theme="about"]) {
+  background: #C8FFAE;
+}
+body[data-theme="about"] {
+  background: #C8FFAE;
+  color: #2E101D;
+}
+body[data-theme="about"] .nav {
+  background: #C8FFAE;
+  color: #2E101D;
+}
+body[data-theme="about"] .foot { color: #2E101D; }
+/* Footer on About: same layout as Work but recolored to #AEEE90 */
+body[data-theme="about"] .foot__fade rect { fill: #AEEE90; }
+body[data-theme="about"] .foot__block {
+  background: #AEEE90;
+  color: #2E101D;
+}
+body[data-theme="about"] .foot__block > span { color: #2E101D; }
+
+/* Case study pages: charcoal bg with black footer graphics */
+html:has(body[data-theme="case-study"]) {
+  background: #181818;
+}
+body[data-theme="case-study"] {
+  background: #181818;
+  color: #FFE9D2;
+}
+body[data-theme="case-study"] .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  color: #FFE9D2;
+  transition: background-color 240ms var(--ease);
+}
+body[data-theme="case-study"] .nav.is-scrolled {
+  background: transparent;
+}
+body[data-theme="case-study"] .foot { color: #FFE9D2; }
+/* Full-viewport solid plate fixed below the 640px hero band.
+   Sits above the fixed hero (z:0) but below content plates (cs::after z:1, nav, footer). */
+body[data-theme="case-study"]::before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 640px;
+  bottom: 0;
+  background: #181818;
+  z-index: 1;
+  pointer-events: none;
+}
+body[data-theme="case-study"] .foot__fade rect { fill: #000000; }
+body[data-theme="case-study"] .foot__block {
+  background: #000000;
+  color: #FFE9D2;
+}
+body[data-theme="case-study"] .foot__block > span { color: #FFE9D2; }
+/* Nav text on work page in peach */
+body[data-theme="work"] .nav { color: #FFE9D2; }
+/* List row separators on Work page */
+body[data-theme="work"] .list__row { border-top-color: #1D030E; }
+body[data-theme="work"] .list__row:last-child { border-bottom-color: #1D030E; }

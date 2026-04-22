@@ -1,0 +1,88 @@
+/* About page — lime green background, dark text */
+body[data-theme="about"] {
+  --bg: #C8FFAE;
+  --bg-deep: #AEEE90;
+  --fg: #2E101D;
+  --fg-dim: rgba(46,16,29,0.62);
+  --fg-faint: rgba(46,16,29,0.22);
+  --fg-hairline: rgba(46,16,29,0.14);
+  --ink: #C8FFAE;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.about__hero {
+  padding: 420px 40px 56px;
+}
+.about__hero svg { width: 100%; height: auto; }
+.about__hero svg path { fill: #8473C8; }
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  padding: 0 var(--pad-x);
+  align-items: start;
+}
+.about__bio {
+  grid-column: 2;
+  /* Extend to the right edge with 16px right gutter */
+  max-width: none;
+  padding-right: 16px;
+  /* Body style */
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.64px;
+}
+.about__bio p + p { margin-top: 1em; }
+
+.about__images {
+  margin: clamp(40px, 6vw, 80px) 40px 42px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.about__img {
+  aspect-ratio: 696 / 797;
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.about__img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* Mouse-trail flower effect (About page only) */
+.about-trail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  overflow: hidden;
+}
+.about-trail__petal {
+  position: absolute;
+  will-change: transform, opacity;
+  pointer-events: none;
+  user-select: none;
+  animation: petalFade 1800ms ease-out forwards;
+}
+@keyframes petalFade {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(var(--r, 0deg)); }
+  12%  { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(var(--r, 0deg)); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(0.2) rotate(calc(var(--r, 0deg) + var(--rEnd, 0deg))); }
+}
+
+@media (max-width: 700px) {
+  .about__grid { grid-template-columns: 1fr; }
+  .about__bio { grid-column: 1; padding-right: 0; }
+  .about__hero { padding-top: 56px; padding-left: var(--pad-x); padding-right: var(--pad-x); }
+  .about__images { grid-template-columns: 1fr; margin-left: var(--pad-x); margin-right: var(--pad-x); }
+}
