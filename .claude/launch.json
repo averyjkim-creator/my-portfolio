@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["-run", "-e", "httpd", "/Users/kenkim/Desktop/Avery/Portfolio 3.0/.claude/worktrees/magical-brown-7f7825", "-p", "8787"],
+      "port": 8787
+    }
+  ]
+}
