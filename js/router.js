@@ -553,19 +553,19 @@
       const reel = el('div', { class: 'cs__reel' });
       if (p.slug === 'opendesk') {
         const BASE = 'assets/case-studies/opendesk/';
-        reel.appendChild(videoFig('wide', BASE + '01-laptop.mov', BASE + '01-laptop.png', 'OpenDesk landing page on laptop'));
+        reel.appendChild(videoFig('wide', BASE + '01-laptop.mp4', BASE + '01-laptop.png', 'OpenDesk landing page on laptop'));
         reel.appendChild(figRow(2, [
-          videoFig('square', BASE + '02-brand-system.mov', BASE + '02-brand-system.png', 'Brand system — logo, mark, color palette'),
-          videoFig('square', BASE + '04-typography.mov', BASE + '04-typography.png', 'Typography system — Roobert display, Inter body')
+          videoFig('square', BASE + '02-brand-system.mp4', BASE + '02-brand-system.png', 'Brand system — logo, mark, color palette'),
+          videoFig('square', BASE + '04-typography.mp4', BASE + '04-typography.png', 'Typography system — Roobert display, Inter body')
         ]));
         reel.appendChild(imgFig('wide', BASE + '03-ui-detail.png', 'Tickets UI — filters and inbox'));
-        reel.appendChild(videoFig('wide', BASE + '05-social.mov', BASE + '05-social.png', 'Social campaign — coming soon posts'));
-        reel.appendChild(videoFig('wide', BASE + '06-mark.mov', BASE + '06-mark.png', 'Brand mark on navy'));
+        reel.appendChild(videoFig('wide', BASE + '05-social.mp4', BASE + '05-social.png', 'Social campaign — coming soon posts'));
+        reel.appendChild(videoFig('wide', BASE + '06-mark.mp4', BASE + '06-mark.png', 'Brand mark on navy'));
       } else if (p.slug === 'aetherflux') {
         const AF = 'assets/case-studies/aetherflux/';
         reel.appendChild(imgFig('wide', AF + '02-wordmark-light.png', 'Aetherflux wordmark — light'));
         reel.appendChild(imgFig('wide', AF + '03-colors.png', 'Color system — Carbon, Dune, Nebula Blue, Corona Red'));
-        reel.appendChild(videoFig('wide', AF + '04-website.mov', AF + '04-website.png', 'Aetherflux.com — Space Solar Power'));
+        reel.appendChild(videoFig('wide', AF + '04-website.mp4', AF + '04-website.png', 'Aetherflux.com — Space Solar Power'));
         reel.appendChild(figRow(2, [
           imgFig('tall', AF + '05-satellite.png', 'APEX satellite render'),
           imgFig('tall', AF + '06-social.png', 'Social — X post on iPhone')
@@ -589,7 +589,7 @@
       } else if (p.slug === 'openstore-shopping') {
         const OS = 'assets/case-studies/openstore-shopping/';
         reel.appendChild(imgFig('wide', OS + '01-hero-laptop.png', 'Landing page on laptop'));
-        reel.appendChild(videoFig('wide', OS + '04-category-home.mov', OS + '04-category-home.png', 'Shop by Category — Home module'));
+        reel.appendChild(videoFig('wide', OS + '04-category-home.mp4', OS + '04-category-home.png', 'Shop by Category — Home module'));
         reel.appendChild(figRow(2, [
           videoFig('tall', OS + '02-phone-category.mp4', OS + '02-phone-category.png', 'Shop by Category — mobile'),
           imgFig('tall', OS + '03-phones-trio.png', 'Mobile product tour — featured collections, trending, founder spotlight')
@@ -606,9 +606,9 @@
         reel.appendChild(imgFig('wide', GD + '04-mobile-screens.png', 'Mobile product tour — collab flow'));
         reel.appendChild(figRow(2, [
           imgFig('tall', GD + '05-drops-hero.png', 'Drops — featured drops'),
-          videoFig('tall', GD + '06-say-hello.mov', GD + '06-say-hello.png', 'Splash — Say hello')
+          videoFig('tall', GD + '06-say-hello.mp4', GD + '06-say-hello.png', 'Splash — Say hello')
         ]));
-        reel.appendChild(videoFig('wide', GD + '07-landing.mov', GD + '07-landing.png', 'Landing page — Weekly pre-approved collabs'));
+        reel.appendChild(videoFig('wide', GD + '07-landing.mp4', GD + '07-landing.png', 'Landing page — Weekly pre-approved collabs'));
         reel.appendChild(imgFig('wide', GD + '08-billboards.png', 'OOH — billboards under the bridge'));
         reel.appendChild(imgFig('wide', GD + '09-posters.png', 'Poster triptych — positioning'));
         reel.appendChild(imgFig('wide', GD + '10-packaging.png', 'Packaging — branded tape'));
@@ -629,11 +629,11 @@
           wrap.appendChild(R);
           return wrap;
         };
-        reel.appendChild(videoFigNat(AR + 'Affirm_01.mov', AR + 'Affirm_01.png'));
+        reel.appendChild(videoFigNat(AR + 'Affirm_01.mp4', AR + 'Affirm_01.png'));
         reel.appendChild(figRow(2, [ar('02'), ar('03')]));
         reel.appendChild(ar('04'));
         reel.appendChild(splitCols([ar('05'), ar('06')], [ar('07')]));
-        reel.appendChild(videoFigNat(AR + 'Affirm_08.mov', AR + 'Affirm_08.png'));
+        reel.appendChild(videoFigNat(AR + 'Affirm_08.mp4', AR + 'Affirm_08.png'));
         reel.appendChild(splitCols([ar('09')], [ar('10'), ar('11')]));
         reel.appendChild(ar('12'));
         reel.appendChild(ar('13'));
@@ -641,7 +641,7 @@
       } else if (p.slug === 'openstore') {
         const OS = 'assets/case-studies/openstore/';
         const os = (n) => imgFigNat(OS + `OpenStore_assets_${n}.png`, `OpenStore — ${n}`);
-        const osv = (n) => videoFigNat(OS + `OpenStore_assets_${n}.mov`, OS + `OpenStore_assets_${n}.png`);
+        const osv = (n) => videoFigNat(OS + `OpenStore_assets_${n}.mp4`, OS + `OpenStore_assets_${n}.png`);
         reel.appendChild(os('01'));
         reel.appendChild(figRow(2, [osv('02'), osv('03')]));
         reel.appendChild(os('04'));
@@ -663,11 +663,11 @@
         reel.appendChild(ap('11'));
       } else if (p.slug === 'affirm_product-marketing') {
         const APM = 'assets/case-studies/affirm-product-marketing/';
-        reel.appendChild(videoFigNat(APM + 'Affirm_debit_01.mov', APM + 'Affirm_debit_01.png'));
+        reel.appendChild(videoFigNat(APM + 'Affirm_debit_01.mp4', APM + 'Affirm_debit_01.png'));
         reel.appendChild(imgFigNat(APM + 'Affirm_debit_02.png', 'Affirm Debit+ — 02'));
-        reel.appendChild(videoFigNat(APM + 'Affirm_debit_03.mov', APM + 'Affirm_debit_03.png'));
-        reel.appendChild(videoFigNat(APM + 'Affirm_debit_04.mov', APM + 'Affirm_debit_04.png'));
-        reel.appendChild(videoFigNat(APM + 'Affirm_debit_05.mov', APM + 'Affirm_debit_05.png'));
+        reel.appendChild(videoFigNat(APM + 'Affirm_debit_03.mp4', APM + 'Affirm_debit_03.png'));
+        reel.appendChild(videoFigNat(APM + 'Affirm_debit_04.mp4', APM + 'Affirm_debit_04.png'));
+        reel.appendChild(videoFigNat(APM + 'Affirm_debit_05.mp4', APM + 'Affirm_debit_05.png'));
       } else if (p.slug === 'collective-health') {
         const CH = 'assets/case-studies/collective-health/';
         const chNat = (n) => imgFigNat(CH + `CH_${n}.png`, `Collective Health — ${n}`);
