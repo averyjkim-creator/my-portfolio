@@ -280,7 +280,7 @@
     window.PROJECTS.forEach((p, i) => {
       const row = el('a', { class: 'list__row', href: '#/' + p.slug, style: `--i:${i};` });
       row.appendChild(el('div', { class: 'list__name' }, p.name, el('span', { class: 'list__arrow' }, ' ↗')));
-      row.appendChild(el('div', { class: 'list__roles' }, p.roles));
+      row.appendChild(el('div', { class: 'list__roles' }, p.tags || p.roles));
       row.appendChild(el('div', { class: 'list__year' }, p.year));
 
       row.addEventListener('mouseenter', () => {
